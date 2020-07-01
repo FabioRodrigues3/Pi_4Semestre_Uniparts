@@ -1,0 +1,30 @@
+  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="/produto/">UniParts</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/produto/">Home</a>
+      </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/cadastro/">Cadastre-se</a>
+        </li>
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+          <a class="nav-link" href="/feitoLogin/">{{user.username}}</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/logout/">Logout</a>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="/login/">Login</a>
+        </li>
+      {% endif %}
+      {% if user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link" href="/produto/registro/">Cadastrar Produto</a>
+        </li>
+        {% endif %}
+    </ul>
+  </nav>

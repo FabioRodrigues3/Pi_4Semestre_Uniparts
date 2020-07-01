@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Cadastrar Produto</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://static.pingendo.com/bootstrap/bootstrap-4.3.1.css">
+</head>
+
+<body>
+  {% include "model-nav.html" %}
+    <!-- <img src="..." class="card-img-top" alt="..."> -->
+   
+    <div class="container">
+      <form enctype="multipart/form-data" action="submit", method="POST">{% csrf_token %}
+        <input type="number" class="form-control" name="venda.id" value="{{ venda.id }}" hidden>
+        <div class="form-group">
+          <label for="tipoproduto">Tipo de Produto:</label>
+          <select class="form-control" id="tipoproduto" name="tipoproduto">
+            
+            <option value="PM">Placa Mãe</option>
+
+            <option value="PR">Processador</option>
+
+            <option value="FO">Fonte</option>
+
+            <option value="PV">Placa de Vídeo</option>
+
+            <option value="DR">Disco Rígido</option>
+
+            <option value="MR">Memória RAM</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" class="form-control" name="nome" placeholder="Insira um nome valido" value="{{ venda.nome }}">
+        </div>
+        <div class="form-group">
+          <label for="descricao">Descrição</label>
+          <textarea  class="form-control" rows="5" name="descricao" placeholder="Insira a descrição do produto">{{ venda.descricao }}</textarea>
+        </div>
+        <div class="form-group">
+          <label for="preco">Preço</label>
+          <input type="number" class="form-control" step="0.01" name="preco" placeholder="Insira o Preço" value="{{ venda.preco }}">
+        </div>
+        <div class="form-group">
+          <label for="qant">Quantidade</label>
+          <input type="number" class="vIntegerField" name="qant" placeholder="Insira a quantidade" value="{{ venda.qant }}">
+        </div>
+        <div class="form-row field-imagem">    
+          <div>
+             <p> <a href="/media/{{ venda.imagem }}" target="_blank">Foto Atual</a></p>
+              <label class="required" for="id_imagem">Imagem:</label>                  
+              <input type="file" name="imagem" accept="image/*" required id="id_imagem">        
+          </div>      
+         </div>
+        <button type="submit" class="btn d-flex flex-column btn-info">
+          {% if venda %}
+          Alterar
+          {% else %}
+          Cadastrar produto
+          {% endif %}
+          <br></button> 
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </div>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <p>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <style>
+    div.polaroid {
+        width: 250px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        text-align: center;
+    }
+    div.container {
+        padding: 10px;
+    }
+</style>
+
+<head>
+  <title>Home</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <title>Uniparts</title>
+  <link rel="icon">
+</head>
+
+<body>
+  <header>
+    {% include "model-nav.html" %}
+  </header>
+  <section>
+    <div id="carouselExampleCaptions" class="carousel slide my-0" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="https://www.pichauarena.com.br/wp-content/uploads/2020/01/PC-Gamer-IDEAL-roda-TUDO-por-2000-Reais.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h2>Aproveite as ofertas exclusivas</h2>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://www.pichauarena.com.br/wp-content/uploads/2020/01/PC-Gamer-2600-reais-roda-tudo-em-Full-HD.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h2></h2>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="https://blog.intelbras.com.br/wp-content/uploads/2019/10/nobreak-ideal-para-pc-gamer.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h2></h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="list-group">
+                <a href="/produto/pr/" class="list-group-item list-group-item-action"><b> Processador<br></b></a>
+                <a href="/produto/pv/" class="list-group-item list-group-item-action"><b> Placa de vídeo<br></b></a>
+                <a href="/produto/mr/" class="list-group-item list-group-item-action"><b> Memória RAM<br></b></a>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="list-group">
+                    <a href="/produto/dr/" class="list-group-item list-group-item-action"><b> Disco rídigo(HD)<br></b></a>
+                    <a href="/produto/pm/" class="list-group-item list-group-item-action"><b> Placa Mãe<br></b></a>
+                    <a href="/produto/fo/" class="list-group-item list-group-item-action"><b> Fontes<br></b></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+        {% for v in venda %}
+            <div class="col-sm-3">
+                <a href="/detalhe/{{ v.id }}">
+                    <div class="polaroid">
+                        <img src="{{ v.imagem.url }}" alt="Norway" style="width:100%"></a>
+                        <div class="container">
+                            <p>{{ v.nome }}</p>   <p class="text-primary">R$ {{ v.preco }}</p>
+                            <a href="/produto/finalizar/{{ v.id }}"><button type="button" class="btn btn-success">Comprar</button></a>
+                        </div>
+                    </div>
+                
+                <br>
+            </div>                
+        {% endfor %}
+    </div>
+  </div> 
+  
+  {% include "model-footer.html" %}
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>
