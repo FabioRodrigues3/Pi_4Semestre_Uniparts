@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .models import Usuario,Produto,Historico
+from .models import Usuario,Produto,Historico,Historia
 from .forms import ProdutoForm
 from django.views.decorators.csrf import csrf_protect
 from django.contrib.auth import authenticate, login, logout
@@ -106,36 +106,38 @@ def produto_detail(request, id):
     return render(request,'produtoDetail.html',{'venda': venda})
 
 @login_required(login_url='/login/')
-def produto_registro(request):
-    produto_id = request.GET.get('id')
-    if produto_id:
-        venda = Produto.objects.get(id=produto_id) # pylint: disable=maybe-no-member
-        return render(request,'cadastroProduto.html', {'venda':venda})
-    return render(request,'cadastroProduto.html')
+def historia_registro(request):
+    historia_id = request.GET.get('id')
+    if historia_id:
+        venda = Historia.objects.get(id=historia_id) # pylint: disable=maybe-no-member
+        return render(request,'cadastroHistoria.html', {'venda':venda})
+    return render(request,'cadastroHistoria.html')
 
 @login_required(login_url='/login/')
-def set_produto(request):
-    tipoproduto = request.POST.get('tipoproduto')
+def set_historia(request):
+    tipogenero = request.POST.get('tipogenero')
+    autor = request.POST.get('autor')
     nome = request.POST.get('nome')
     descricao = request.POST.get('descricao')
     preco = request.POST.get('preco')
-    qant = request.POST.get('qant')
+    classificacao = request.POST.get('classificacao')
     imagem = request.FILES.get('imagem')
-    produtoid = request.POST.get('venda.id')
-    if produtoid:
-        venda = Produto.objects.get(id=produtoid)# pylint: disable=maybe-no-member
-        print(produtoid)
-        venda.tipoproduto = tipoproduto
+    historiaid = request.POST.get('historia.id')
+    if historiaid:
+        venda = Historia.objects.get(id=historiaid)# pylint: disable=maybe-no-member
+        print(historiaid)
+        venda.tipogenero = tipogenero
+        venda.autor = autor
         venda.nome = nome
         venda.descricao = descricao
         venda.preco = preco
-        venda.qant = qant
+        venda.classificacao = classificacao
         if imagem:
             venda.imagem = imagem
         venda.save()
     else: 
-        print(produtoid)
-        venda = Produto.objects.create(tipo_de_produto=tipoproduto,nome=nome, descricao=descricao, preco=preco,imagem=imagem, qant=qant) # pylint: disable=maybe-no-member
+        print(historiaid)
+        venda = Historia.objects.create(tipo_de_genero=tipogenero, autor=autor, nome=nome, descricao=descricao, preco=preco,imagem=imagem, classificacao=classificacao) # pylint: disable=maybe-no-member
     
     return redirect('/')
 

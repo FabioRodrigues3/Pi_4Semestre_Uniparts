@@ -40,8 +40,8 @@ urlpatterns = [
     path('produto/todos', views.lista_produtos),
     path('detalhe/<id>/',views.produto_detail),
     path('detalhe/<id>/submit',views.addcarrinho),
-    path('produto/registro/', views.produto_registro),
-    path('produto/registro/submit', views.set_produto),
+    path('produto/registro/', views.historia_registro),
+    path('produto/registro/submit', views.set_historia),
     path('produto/deletar/<id>/', views.deletar_produto),
     path('', RedirectView.as_view(url='produto/')),
 

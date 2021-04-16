@@ -1,5 +1,7 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+
+
 # Create your models here.
 class Produto(models.Model):
     PlacaMae = 'PM'
@@ -31,10 +33,9 @@ class Produto(models.Model):
 class Usuario(models.Model):
     nome = models.CharField(max_length = 40)
     email = models.CharField(max_length = 30)
-    cpf = models.CharField(max_length = 11)
-    cep = models.CharField(max_length = 8)
     login = models.CharField(max_length = 15)
     senha = models.CharField(max_length = 15)
+    datanasc = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.description # pylint: disable=maybe-no-member 
@@ -74,3 +75,29 @@ class Transacao(models.Model):
         return self.order_id
     class Meta:
         ordering = ['-timestamp']
+    
+class Historia(models.Model):
+    autor = models.ForeignKey(Usuario.self, on_delete=models.CASCADE)
+    nome = models.CharField(max_length = 40)
+    Romance = 'RO'
+    Drama = 'DR'
+    Aventura = 'AV'
+    Terror = 'TE'
+    TIPO_DE_GENERO_CHOICES = [
+        (Romance, 'Romance'),
+        (Drama, 'Drama'),
+        (Aventura, 'Aventura'),
+        (Terror, 'Terror'),
+    ]
+    tipo_de_genero = models.CharField(
+        max_length=2,
+        choices=TIPO_DE_GENERO_CHOICES,
+        default=Aventura,
+    )
+    classificacao = models.IntegerField()
+    preco = models.DecimalField(max_digits = 9, decimal_places = 2)
+    descricao = models.TextField()
+    avaliacao = models.BooleanField(default=True)
+    imagem = models.ImageField(upload_to='historia', default=False)
+
+
