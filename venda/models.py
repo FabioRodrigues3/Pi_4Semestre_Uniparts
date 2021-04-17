@@ -77,7 +77,6 @@ class Transacao(models.Model):
         ordering = ['-timestamp']
     
 class Historia(models.Model):
-    autor = models.ForeignKey(Usuario.self, on_delete=models.CASCADE)
     nome = models.CharField(max_length = 40)
     Romance = 'RO'
     Drama = 'DR'
